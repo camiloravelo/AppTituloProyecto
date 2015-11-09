@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTitulo2/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTitulo2/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTitulo2/resources/css/docs.min.css" rel="stylesheet" type="text/css"/>
+        <script src="/AppTitulo2/resources/js/bootstrap.js" type="text/javascript"></script>
+
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+          <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTitulo2/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTitulo2/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 10px;">
+                   <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Distribución de Estilos de Aprendizaje" class="list-group-item" outcome="./VerDistribucion.xhtml" />
+                        <h:link value="Agrupar por Estilos de Aprendizaje" class="list-group-item" outcome="./AgruparPorEA.xhtml" />
+                        <h:link value="Avance de un Estudiante" class="list-group-item active" outcome="./RealizarSeguimiento.xhtml" />
+                        <h:link value="Avance del curso" class="list-group-item" outcome="./AvanceCurso.xhtml" />
+                        <h:link value="Gestionar Recursos de Aprendizaje" class="list-group-item" outcome="./gestionarRecursos.xhtml" />
+                        <h:link value="Gestionar Estudiantes" class="list-group-item" outcome="./gestionarEstudiantes.xhtml" />
+                        <h:link value="Gestionar Evaluaciones" class="list-group-item" outcome="./setEvaluacion.xhtml?idTopico=0" />
+                        <h:link value="Mi Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link> 
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-danger" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div> 
+
+                <div class="col-md-9">
+                    <div class="page-header">
+                        <h2>Gestión de Estudiantes <small><br/><h:outputText value="#{es2.nombre}"/> </small></h2>
+                    </div>
+                    <div class="bs-callout bs-callout-info">
+                        <h4>Perfil</h4>
+                        <p>Nombre: <h:outputText value="#{perfilEstudianteIntro.alumno.nombre}"/></p>
+                        <p>Correo: <h:outputText value="#{perfilEstudianteIntro.alumno.correo}"/></p>
+                        Estilo:
+                        <h:outputText value="#{perfilEstudianteIntro.estilo.dimension1Value}"/>, 
+                        <h:outputText value="#{perfilEstudianteIntro.estilo.dimension2Value}"/>, 
+                        <h:outputText value="#{perfilEstudianteIntro.estilo.dimension3Value}"/>, 
+                        <h:outputText value="#{perfilEstudianteIntro.estilo.dimension4Value}"/>, 
+
+
+                    </div>
+                    <div class="bs-callout bs-callout-info">
+
+                        <h4>Desempeño</h4>
+                        <h:form> 
+                            <p:dataTable var="empleado" value="#{viewAsignatura.getunidad1()}"  styleClass="" >  
+                                <p:column headerText="Unidad 1" style="width:100px"> 
+                                    <h:outputText value="#{empleado.idTopico}" />  
+                                </p:column>  
+                                <p:column headerText="Tópico"> 
+                                    <h:outputText value="#{empleado.nombre}" />  
+                                </p:column>  
+                                <p:column headerText="Estado" width="93" >
+                                    <h:outputText escape="false" value="#{viewAsignatura.Etiqueta(empleado.isConocido)}"/>
+                                </p:column>
+
+
+
+                            </p:dataTable> 
+                            <p:dataTable var="empleado" value="#{viewAsignatura.getunidad2()}"  styleClass="" >  
+                                <p:column headerText="Unidad 2" style="width:100px"> 
+                                    <h:outputText value="#{empleado.idTopico}" />  
+                                </p:column>  
+                                <p:column headerText="Tópico"> 
+                                    <h:outputText value="#{empleado.nombre}" />  
+                                </p:column>  
+                                <p:column headerText="Estado" width="93" >
+                                    <h:outputText escape="false" value="#{viewAsignatura.Etiqueta(empleado.isConocido)}"/>
+                                </p:column>
+                            </p:dataTable> 
+
+
+                            <p:dataTable var="empleado" value="#{viewAsignatura.getunidad3()}"  styleClass="" >  
+                                <p:column headerText="Unidad 3" style="width:100px"> 
+                                    <h:outputText value="#{empleado.idTopico}" />  
+                                </p:column>  
+
+                                <p:column headerText="Tópico"> 
+                                    <h:outputText value="#{empleado.nombre}" />  
+                                </p:column>  
+                                <p:column headerText="Estado" width="93" >
+                                    <h:outputText escape="false" value="#{viewAsignatura.Etiqueta(empleado.isConocido)}"/>
+                                </p:column>
+                            </p:dataTable>
+                            
+                            <p:dataTable var="empleado" value="#{viewAsignatura.getunidad4()}"  styleClass="" >  
+                                <p:column headerText="Unidad 4" style="width:100px"> 
+                                    <h:outputText value="#{empleado.idTopico}" />  
+                                </p:column>  
+
+                                <p:column headerText="Tópico"> 
+                                    <h:outputText value="#{empleado.nombre}" />  
+                                </p:column>  
+                                <p:column headerText="Estado" width="93" >
+                                    <h:outputText escape="false" value="#{viewAsignatura.Etiqueta(empleado.isConocido)}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+
+                    </div>
+
+                </div>
+            </div> 
+        </div>
+
+    </h:body>
+</html>
+
+
+

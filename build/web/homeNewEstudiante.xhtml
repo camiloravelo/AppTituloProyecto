@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="/AppTituloProyecto/resources/js/bootstrap.js" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            
+             <div id="head">
+	  	<ui:insert name="head" >
+                    
+	 	  <ui:include src="static/cabecera.xhtml" />
+	   	</ui:insert>
+	    </div>
+            
+            <div class="row" style="margin: 10px;">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="jumbotron" style="background-color: #ffffff;">
+                        <h1>Bienvenido</h1>
+                        <h4>Para tener una cuenta en la aplicación, primero debes responder un cuestionario para
+                        medir tu estilo de aprendizaje, de esta forma el aplicación entregará recursos de acuerdo a tu perfil
+                        </h4>
+                        <h4>
+                            Luego debes seleccionar los tópicos de la asignatura que ya conoces
+                        </h4>
+                        <p><h:link value="Responder Cuestionario" class="btn btn-primary btn-lg" outcome="./Cuestionario1.xhtml" >
+                                <f:param name="username" value="#{login.nombre}" />  
+                            </h:link></p>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+

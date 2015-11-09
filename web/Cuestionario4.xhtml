@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/v/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+           <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <p:tooltip />
+
+                    <p:messages id="messages" showDetail="true" autoUpdate="false" closable="true" />
+
+
+                    <h:form><ol start="34">
+                            <li> 
+                                Considero que es mejor elogio llamar a alguien
+                                <h:selectOneRadio value="#{cuestionario.respuestas[33]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) sensible." />
+                                    <f:selectItem itemValue="1" itemLabel="b) imaginativo." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando conozco gente en una fiesta, es más probable que recuerde
+                                <h:selectOneRadio value="#{cuestionario.respuestas[34]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) cómo es su apariencia." />
+                                    <f:selectItem itemValue="1" itemLabel="b) lo que dicen de sí mismos." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando estoy aprendiendo un tema, prefiero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[35]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) mantenerme concentrado en ese tema, aprendiendo lo más que pueda de él." /><br/>
+                                    <f:selectItem itemValue="1" itemLabel="b) hacer conexiones entre ese tema y temas relacionados." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Me considero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[36]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) abierto." />
+                                    <f:selectItem itemValue="1" itemLabel="b) reservado." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Prefiero cursos que dan más importancia a
+                                <h:selectOneRadio value="#{cuestionario.respuestas[37]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) material concreto (hechos,datos." />
+                                    <f:selectItem itemValue="1" itemLabel="b) material abstracto (conceptos, teorías." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Para divertirme, prefiero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[38]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) ver televisión." />
+                                    <f:selectItem itemValue="1" itemLabel="b) leer un libro." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Algunos profesores inician sus clases haciendo un bosquejo de lo que enseñarán. Esos bosquejos son
+                                <h:selectOneRadio value="#{cuestionario.respuestas[39]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) algo útiles para mí." />
+                                    <f:selectItem itemValue="1" itemLabel="b) muy útiles para mí." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                La idea de hacer una tarea en grupo con una sola calificación para todos
+                                <h:selectOneRadio value="#{cuestionario.respuestas[40]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) me parece bien." /><br/>
+                                    <f:selectItem itemValue="1" itemLabel="b) no me parece bien." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando hago grandes cálculos
+                                <h:selectOneRadio value="#{cuestionario.respuestas[41]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) tiendo a repetir todos mis pasos y revisar cuidadosamente mi trabajo." /><br/>
+                                    <f:selectItem itemValue="1" itemLabel="b) me cansa hacer su revisión y tengo que esforzarme para hacerlo." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Tiendo a recordar lugares en los que he estado
+                                <h:selectOneRadio value="#{cuestionario.respuestas[42]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) fácilmente y con bastante exactitud." /><br/>
+                                    <f:selectItem itemValue="1" itemLabel="b) con dificultad y sin mucho detalle." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando resuelvo problemas en grupo, es más probable que yo
+                                <h:selectOneRadio value="#{cuestionario.respuestas[43]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) Piense en los pasos para la solución de los problemas." /><br/>
+                                    <f:selectItem itemValue="1" itemLabel="b) piense en las posibles consecuencias o aplicaciones de la solución en un amplio rango de campos." />
+                                </h:selectOneRadio>
+                            </li>
+                        </ol>
+                        <h:commandButton class="btn btn-primary" id="submit"  value="Enviar Cuestionario" action="#{cuestionario.procesarDatos()}" />
+
+                    </h:form>
+                </div></div>
+        </div>
+    </h:body>
+</html>
+
+
+

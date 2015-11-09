@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTitulo2/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTitulo2/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTitulo2/resources/css/docs.min.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .form-signin .form-signin-heading,
+            .form-signin .checkbox {
+                margin-bottom: 10px;
+            }
+            .form-signin input[type="text"],
+            .form-signin select,
+            .form-signin input[type="password"] {
+                font-size: 14px;
+                height: auto;
+                margin-bottom: 5px;
+                padding: 7px 9px;
+            }
+        </style>
+    </h:head>
+
+    <h:body >
+        <div class="container-fluid">
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTitulo2/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTitulo2/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 10px;">
+             <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Distribución de Estilos de Aprendizaje" class="list-group-item" outcome="./VerDistribucion.xhtml" />
+                        <h:link value="Agrupar por Estilos de Aprendizaje" class="list-group-item" outcome="./AgruparPorEA.xhtml" />
+                        <h:link value="Avance de un Estudiante" class="list-group-item" outcome="./RealizarSeguimiento.xhtml" />
+                        <h:link value="Avance del curso" class="list-group-item" outcome="./AvanceCurso.xhtml" />
+                        <h:link value="Gestionar Recursos de Aprendizaje" class="list-group-item active" outcome="./gestionarRecursos.xhtml" />
+                        <h:link value="Gestionar Estudiantes" class="list-group-item" outcome="./gestionarEstudiantes.xhtml" />
+                        <h:link value="Gestionar Evaluaciones" class="list-group-item" outcome="./setEvaluacion.xhtml?idTopico=0" />
+                        <h:link value="Mi Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link> 
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-danger" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div> 
+                <div class="col-md-9">
+                    <div class="page-header">
+                        <h2>Gestión de Recursos <small><br/>Añadir nuevo recurso, complete los datos que se solicitan. </small></h2>
+
+                    </div>
+
+                    <p:tooltip />
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                    <h:form enctype="multipart/form-data">
+                        <div class="bs-callout bs-callout-info">               
+                            <h4>General</h4>
+
+
+                            <h:panelGrid columns="2"> 
+                                <h:outputLabel value="Título" />
+                                <p:inputText value="#{objetoCrear.oa.titulo}" placeholder="Ej. Tutorial de Estructuras Selectivas" size="55"/>
+
+                                <h:outputLabel value="Descripción" />
+                                <p:inputText value="#{objetoCrear.oa.descripcion}" placeholder="Ej. Tutorial de corta duración" size="55"/>
+
+                                <h:outputLabel value="Autor"/>
+                                <p:inputText value="#{objetoCrear.oa.autor}" placeholder="Ej. Profesor Carlos Becerra C." size="55"/>                  
+
+                                <h:outputLabel value="Fecha de Creación &nbsp;" />
+                                <p:inputText value="#{objetoCrear.oa.fecha}" placeholder="Ej. Enero 2014" size="55"/>
+
+
+                                <h:outputLabel value="Versión" />
+                                <p:inputText value="#{objetoCrear.oa.version}" placeholder="Ej.1.1" size="55"/>                                
+
+                                <h:outputLabel value="Derechos" />
+                                <p:inputText value="#{objetoCrear.oa.derechos}" placeholder="Ej. Libre uso y distribución" size="55"/>   
+
+                                <h:outputLabel value="Formato"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.formato}">
+                                    <f:selectItem itemValue="pdf" itemLabel="Documento Pdf"/>
+                                    <f:selectItem itemValue="ppt" itemLabel="Presentacion ppt"/>
+                                    <f:selectItem itemValue="doc" itemLabel="Documento word"/>
+                                    <f:selectItem itemValue="codigo" itemLabel="Codigo Fuente"/>
+                                    <f:selectItem itemValue="video" itemLabel="Video"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+
+                        </div>
+
+                        <div class="bs-callout bs-callout-info">
+                            <h4>Educativo</h4>
+                            <h:panelGrid columns="2" >
+                                <h:outputLabel value="Tipo Recurso"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.tipoRecurso}">
+                                    <f:selectItem itemValue="diapositiva" itemLabel="Diapositiva de Catedra"/>
+                                    <f:selectItem itemValue="tutorial" itemLabel="Tutorial"/>
+                                    <f:selectItem itemValue="ejemplos" itemLabel="Ejemplos"/>
+                                    <f:selectItem itemValue="conceptos" itemLabel="Conceptos"/>
+
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Tópico"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.idTopico}">
+                                    <f:selectItem itemValue="1" itemLabel="Definición"/>
+                                    <f:selectItem itemValue="2" itemLabel="Caja negra/Caja blanca"/>
+                                    <f:selectItem itemValue="3" itemLabel="Descripción de entradas/salidas"/>
+                                    <f:selectItem itemValue="4" itemLabel="Interconexión de sistemas"/>
+                                    <f:selectItem itemValue="5" itemLabel="Descripción Funcional de Sistemas"/>
+                                    <f:selectItem itemValue="6" itemLabel="Descripción estructural de sistemas "/>
+                                    <f:selectItem itemValue="7" itemLabel="Representación de variables"/>
+                                    <f:selectItem itemValue="8" itemLabel="Concepto de cuantización"/>
+                                    <f:selectItem itemValue="9" itemLabel="Conversores A/D como caja negra"/>
+                                    <f:selectItem itemValue="10" itemLabel="Sistemas computacionales"/>
+                                    <f:selectItem itemValue="11" itemLabel="Descripción de sistemas eléctricos"/>
+                                    <f:selectItem itemValue="12" itemLabel="Contexto de asignatura"/>
+                                    <f:selectItem itemValue="13" itemLabel="Alcance de la asignatura"/>
+                                    <f:selectItem itemValue="14" itemLabel="Ejemplos de sistemas eléctricos"/>
+                                    <f:selectItem itemValue="15" itemLabel="Algoritmos de Búsqueda"/>
+                                    <f:selectItem itemValue="16" itemLabel="Variables eléctricas"/>
+                                    <f:selectItem itemValue="17" itemLabel="Voltaje"/>
+                                    <f:selectItem itemValue="18" itemLabel="Corriente"/>
+                                    <f:selectItem itemValue="19" itemLabel="Potencia"/>
+                                    <f:selectItem itemValue="20" itemLabel="Propiedades eléctricas de los materiales"/>
+                                    <f:selectItem itemValue="21" itemLabel="Resistividad"/>
+                                    <f:selectItem itemValue="22" itemLabel="Clasificación de materiales eléctricos según su resistividad"/>
+                                    <f:selectItem itemValue="23" itemLabel="Sistemas de referencias para voltaje, corriente y potencia"/>
+                                    <f:selectItem itemValue="24" itemLabel="Modelos eléctricos"/>
+                                    <f:selectItem itemValue="25" itemLabel="Diagramas eléctricos"/>
+                                    <f:selectItem itemValue="26" itemLabel="Símbolos eléctricos"/>
+                                    <f:selectItem itemValue="27" itemLabel="Nodos, ramas y mallas"/>
+                                    <f:selectItem itemValue="28" itemLabel="Punto de referencia o tierra"/>
+                                    <f:selectItem itemValue="29" itemLabel="Circuito abierto"/>
+                                    <f:selectItem itemValue="30" itemLabel="Corto Circuito"/>
+                                    <f:selectItem itemValue="31" itemLabel="Diagramas eléctricos equivalentes"/>
+                                    <f:selectItem itemValue="32" itemLabel="Resistencia, condensadores, inductancias"/>
+                                    <f:selectItem itemValue="33" itemLabel="Fuentes independientes de voltaje"/>
+                                    <f:selectItem itemValue="34" itemLabel="Fuentes independientes de corriente"/>
+                                    <f:selectItem itemValue="35" itemLabel="Fuentes dependientes de voltaje"/>
+                                    <f:selectItem itemValue="36" itemLabel="Fuentes dependientes de corriente"/>
+                                    <f:selectItem itemValue="37" itemLabel="Referencias para los elementos de un circuito"/>
+                                    <f:selectItem itemValue="38" itemLabel="Cálculo de potencia eléctrica en circuitos sencillos"/>
+                                    <f:selectItem itemValue="39" itemLabel="Leyes de Kirchhoff de corriente"/>
+                                    <f:selectItem itemValue="40" itemLabel="Leyes de Kirchhoff de voltaje"/>
+                                    <f:selectItem itemValue="41" itemLabel="Interruptor normalmente abierto"/>
+                                    <f:selectItem itemValue="42" itemLabel="Interruptor normalmente cerrado"/>
+                                    <f:selectItem itemValue="43" itemLabel="Fusible"/>
+                                    <f:selectItem itemValue="44" itemLabel="Función característica"/>
+                                    <f:selectItem itemValue="45" itemLabel="Equivalencias Resistencia en serie/paralelo"/>
+                                    <f:selectItem itemValue="46" itemLabel="Divisor de voltaje"/>
+                                    <f:selectItem itemValue="47" itemLabel="Divisor de corriente"/>
+                                    <f:selectItem itemValue="48" itemLabel="Equivalancia Thevenin /Norton"/>
+                                    <f:selectItem itemValue="49" itemLabel="Resolución de redes resistenvas bajo señales continuas y senoidales"/>
+                                    <f:selectItem itemValue="50" itemLabel="Introducción a las definiciones eléctricas: FASE, TIERRA, NEUTRO"/>
+                                    <f:selectItem itemValue="51" itemLabel="Ejemplos de diagramas reales de instalación eléctrica"/>
+                                    <f:selectItem itemValue="52" itemLabel="Dimensionamiento sencillo de redes eléctricas"/>
+                                    <f:selectItem itemValue="53" itemLabel="Sistemas de protección de aparatos eléctricos y de vida"/>
+                                    <f:selectItem itemValue="54" itemLabel="Concepto de puerta digital"/>
+                                    <f:selectItem itemValue="55" itemLabel="Niveles lógicos"/>
+                                    <f:selectItem itemValue="56" itemLabel="FAN in, FAN out"/>
+                                    <f:selectItem itemValue="57" itemLabel="Función características del diodo"/>
+                                    <f:selectItem itemValue="58" itemLabel="Caracterización del estado 'ON' y 'OFF' en compuertas con diodos"/>
+                                    <f:selectItem itemValue="59" itemLabel="Ejemplos de compuertas digitales con diodos"/>
+                                    <f:selectItem itemValue="60" itemLabel="Función característica del transistor bipolar"/>
+                                    <f:selectItem itemValue="61" itemLabel="Caracterización del estado 'ON' y 'OFF' en transistores bipolares"/>
+                                    <f:selectItem itemValue="62" itemLabel="Ejemplos de compuertas digitales con transistores bipolares"/>
+                                    <f:selectItem itemValue="63" itemLabel="Función característica del transistor mosfet"/>
+                                    <f:selectItem itemValue="64" itemLabel="Caracterización del estado 'ON' y 'OFF' en transistores mosfet"/>
+                                    <f:selectItem itemValue="65" itemLabel="Ejemplos de compuertas digitales con transistores mosfet"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="Archivo" /> <p:fileUpload  value="#{objetoCrear.file}" mode="simple"  />
+                            </h:panelGrid> 
+                        </div>
+                        <div class="bs-callout bs-callout-info">
+                            <h4>Estilo de Aprendizaje</h4>
+                            <h:panelGrid columns="2"> 
+
+                                <h:outputLabel value="Contenido"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.estilo1}">
+                                    <f:selectItem itemValue="1" itemLabel="Sensitivo"/>
+                                    <f:selectItem itemValue="2" itemLabel="Intuitivo"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Presentación"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.estilo2}"> 
+                                    <f:selectItem itemValue="1" itemLabel="Visual"/>
+                                    <f:selectItem itemValue="2" itemLabel="Verbal"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Participación"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.estilo3}">
+                                    <f:selectItem itemValue="1" itemLabel="Activo"/>
+                                    <f:selectItem itemValue="2" itemLabel="Reflexivo"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Perspectiva"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.estilo4}">
+                                    <f:selectItem itemValue="1" itemLabel="Secuencial"/>
+                                    <f:selectItem itemValue="2" itemLabel="Global"/>
+                                </h:selectOneMenu>
+
+                            </h:panelGrid> 
+                        </div>
+                        <p:commandButton ajax="false" value="Guardar" action="#{objetoCrear.procesar()}"  />
+                    </h:form>
+                </div>
+            </div>
+        </div>  
+    </h:body>
+</html>
+
+
+

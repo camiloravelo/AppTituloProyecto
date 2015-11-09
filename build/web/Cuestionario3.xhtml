@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <p:tooltip />
+
+                    <p:messages id="messages" showDetail="true" autoUpdate="false" closable="true" />
+ 
+
+                    <h:form> 
+                        <ol start="23">
+                            <li> 
+                                Cuando alguien me da direcciones de nuevos lugares, prefiero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[22]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) un mapa." />
+                                    <f:selectItem itemValue="1" itemLabel="b) instrucciones escritas." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Aprendo
+                                <h:selectOneRadio value="#{cuestionario.respuestas[23]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) a un paso constante. Si estudio con ahínco consigo lo que deseo." />
+                                    <f:selectItem itemValue="1" itemLabel="b) en inicios y pausas. Me llego a confundir y súbitamente lo entiendo." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Prefiero primero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[24]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) hacer algo y ver que sucede." />
+                                    <f:selectItem itemValue="1" itemLabel="b) pensar como voy a hacer algo." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando leo por diversión, me gustan los escritores que
+                                <h:selectOneRadio value="#{cuestionario.respuestas[25]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) dicen claramente los que desean dar a entender." />
+                                    <f:selectItem itemValue="1" itemLabel="b) dicen las cosas en forma creativa e interesante." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando veo un esquema o bosquejo en clase, es más probable que recuerde
+                                <h:selectOneRadio value="#{cuestionario.respuestas[26]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) la imagen." />
+                                    <f:selectItem itemValue="1" itemLabel="b) lo que el profesor dijo acerca de ella." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando me enfrento a un cuerpo de información
+                                <h:selectOneRadio value="#{cuestionario.respuestas[27]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) me concentro en los detalles y pierdo de vista el total de la misma." />
+                                    <f:selectItem itemValue="1" itemLabel="b) trato de entender el todo antes de ir a los detalles." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Recuerdo más fácilmente
+                                <h:selectOneRadio value="#{cuestionario.respuestas[28]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) algo que he hecho." />
+                                    <f:selectItem itemValue="1" itemLabel="b) algo en lo que he pensado mucho." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando tengo que hacer un trabajo, prefiero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[29]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) dominar una forma de hacerlo." />
+                                    <f:selectItem itemValue="1" itemLabel="b) intentar nuevas formas de hacerlo." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando alguien me enseña datos, prefiero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[30]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) gráficas." />
+                                    <f:selectItem itemValue="1" itemLabel="b) resúmenes con texto." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando escribo un trabajo, es más probable que 
+                                <h:selectOneRadio value="#{cuestionario.respuestas[31]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) lo haga ( piense o escriba)   desde el principio y avance." /><br/>
+                                    <f:selectItem itemValue="1" itemLabel="b) lo haga (piense o escriba)   en diferentes partes y luego las ordene." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando tengo que trabajar en un proyecto de grupo, primero quiero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[32]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) realizar una tormenta de ideas donde cada uno contribuye con ideas." /><br/>
+                                    <f:selectItem itemValue="1" itemLabel="b) realizar la tormenta de ideas en forma personal y luego juntarme con el grupo para comparar las ideas." />
+                                </h:selectOneRadio>
+
+
+                            </li>    
+                        </ol>
+                        <h:commandButton class="btn btn-primary" value="Siguiente" action="#{cuestionario.avansar3()}"/>
+
+                    </h:form>
+                </div></div>
+        </div>
+    </h:body>
+</html>
+

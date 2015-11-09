@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="/AppTituloProyecto/resources/js/bootstrap.js" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <!--Inicio Boton salir -->
+            <!--Esta es una prueba ddel git -->
+            <h:form>
+                <div class="menuHeader">
+                    <h:button class="btn btn-default" value="Cuenta" outcome="./perfil.xhtml"/>
+                    <h:commandButton class="btn btn-default" value="Salir" action="#{login.logout()}" />
+                </div>
+            </h:form>
+            <!--Fin Boton salir -->
+
+            <div class="row" style="margin: 10px;">
+
+                <!--Inicio Menu Principal -->
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Recursos de Aprendizaje" class="list-group-item active" outcome="./accederRecursos.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Repasar lo aprendido" class="list-group-item" outcome="./repasarAprendido.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Rendir Evaluación" class="list-group-item" outcome="./homeEvaluacion.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Estado de Avance" class="list-group-item" outcome="./estadoAvance.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Ver Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+                    </div>
+
+                    <div class="well well-sm">
+                        <h4>Ayuda</h4>
+                        <span class="label" style="color:black;background:#fffbdb">Estilo</span> <p style="font-size:0.9em;"  >Significa que tu estilo coincide con el del recurso</p>
+                        <span class="label label-info">Estilo</span> <p style="font-size:0.9em;" >Significa que tu estilo no es le mismo que del resurso</p>
+                    </div> 
+                </div> 
+                <!--Fin Menu Principal -->
+
+                <div class="col-md-9">
+                    <div class="page-header">
+                        <h2>Acceder a Recursos<small><br/>Selecciona el tópico que deseas aprender y la aplicación te entregará una lista de recursos</small></h2>
+                    </div>
+
+                    <!--Form Acordeon-->
+                    <h:form id="accordeon">
+
+                        <h:outputText value="#{accederOa.mensajeVacio}" escape="false" rendered="#{!accederOa.selector}"/>
+                        <h:selectOneMenu value="#{accederOa.topicoSeleccionado}" rendered="#{accederOa.selector}" >  
+                            <f:selectItems value="#{accederOa.ruta}" var="topico" itemLabel="#{topico.nombre}" itemValue="#{topico.idTopico}" />
+                            <!--<p:ajax event="change" listener="# {accederOa.mostrarResultados}"/> -->
+                        </h:selectOneMenu>
+                        &nbsp;&nbsp;&nbsp;
+                        <h:commandButton  value="Listar Recursos" class="btn btn-primary" action="#{accederOa.mostrarResultados()}" rendered="#{accederOa.selector}" >
+                        </h:commandButton>
+                        <br/><br/>
+
+
+
+                        <!--Acordeon-->
+
+                        <p:accordionPanel multiple="true" value="#{accederOa.objetos}" var="topico" activeIndex="-1" >
+                            <p:tab title="#{topico.nameTopico}">
+                                <p:dataGrid columns="1"  var="objetos1" value="#{accederOa.objetos1}">
+                                    <p:column headerText="Recurso" rendered="#{objetos1.nameTopico eq topico.nameTopico}">
+                                        <p:panel header="#{objetos1.titulo}" style="text-align:center">
+                                            <h:panelGrid columns="2" style="width:100%;">
+                                                <h:panelGroup style="float: left">
+                                                    <strong>Descripcion : </strong> <h:outputText value="#{objetos1.descripcion}" />  <br/>
+                                                    <br/>
+                                                    <h:panelGroup style="float: left">
+                                                        <span class="#{accederOa.devolverEtiqueta(1,objetos1.estilo1)}" ><h:outputText value="#{objetos1.estilo.dimension1Value}" /></span>
+                                                        <span class="#{accederOa.devolverEtiqueta(2,objetos1.estilo2)}" ><h:outputText value="#{objetos1.estilo.dimension2Value}" /></span>
+                                                        <span class="#{accederOa.devolverEtiqueta(3,objetos1.estilo3)}" ><h:outputText value="#{objetos1.estilo.dimension3Value}" /></span>
+                                                        <span class="#{accederOa.devolverEtiqueta(4,objetos1.estilo4)}" ><h:outputText value="#{objetos1.estilo.dimension4Value}" /></span>
+                                                    </h:panelGroup>
+                                                </h:panelGroup>
+
+                                                <h:panelGroup style="float: right">
+                                                    <p:commandButton class="btnAccion" id="descargar" icon="ui-icon-disk" title="descargar" onclick="window.open('/AppTituloProyecto/resources/objetos/#{objetos1.ruta};')"/>
+                                                    <p:commandButton class="btnAccion" id="ver" ajax="true" process="@form" update="modal:dialogPanel" action="#{accederOa.verObjeto(objetos1.id)}" oncomplete="PF('dlg2').show();" icon="ui-icon-zoomin" title="ver" />
+                                                    <!--<p:commandButton  value="Modal" action="# {accederOa.verObjeto(objetos1.id)}" type="button" update="dialog" onclick="PF('dlg2').show();" />-->
+                                                </h:panelGroup>
+                                            </h:panelGrid>
+                                        </p:panel>
+                                    </p:column>
+                                </p:dataGrid>
+                            </p:tab>
+                        </p:accordionPanel>
+                            
+
+                        <!--  Tabla
+                        
+                        <p:dataTable var="objetos" value="# {accederOa.objetos}" id="tabla" rendered="# {accederOa.mostrarTabla}" emptyMessage="Sin recursos disponibles" >  
+
+                            <p:column headerText="Tópico" style="width:250px" filterBy="# {objetos.nameTopico}" filterMatchMode="contains">                                  
+                                <strong style="font-size:1em;" > <h:outputText value="# {objetos.nameTopico}" />  </strong>
+                            </p:column>
+
+                            <p:column headerText="Recurso" >
+
+                                <div style="float:left;">
+                                    <p style="font-size:0.8em;"  > 
+                                        <strong>Título: </strong> <h:outputText value="# {objetos.titulo}" />  <br/>
+                                        <strong>Tipo: </strong> <h:outputText value="# {objetos.tipoRecurso}" />  <br/></p>
+
+                                    <span class="# {accederOa.devolverEtiqueta(1,objetos.estilo1)}" ><h:outputText value="# {objetos.estilo.dimension1Value}" /></span>
+
+                                    <span class="# {accederOa.devolverEtiqueta(2,objetos.estilo2)}" ><h:outputText value="# {objetos.estilo.dimension2Value}" /></span>
+                                    <span class="# {accederOa.devolverEtiqueta(3,objetos.estilo3)}" ><h:outputText value="# {objetos.estilo.dimension3Value}" /></span>
+                                    <span class="# {accederOa.devolverEtiqueta(4,objetos.estilo4)}" ><h:outputText value="# {objetos.estilo.dimension4Value}" /></span>
+
+                                </div>
+
+                                <div style="float:right;">
+                                    <p:commandButton id="descargar" icon="ui-icon-disk" title="descargar" onclick="window.location.href = '/AppTituloProyecto/resources/objetos/# {objetos.ruta};'"/>
+                                    <p:commandButton id="ver" ajax="false" action="# {accederOa.verObjeto(objetos.id)}" icon="ui-icon-zoomin" title="ver" />
+                                </div>
+
+                                <div style="clear:both"></div>
+
+                            </p:column> 
+
+                        </p:dataTable>
+                        -->
+                    </h:form>
+
+                    <!-- Carga este Modal-->
+                    <h:form id="modal">
+                        <p:dialog header="Detalle del Recurso" widgetVar="dlg2" modal="true" height="500" width="650">  
+                            <p:outputPanel id="dialogPanel">
+                                <div class="page-header">               
+                                    <h4>General</h4>
+                                    <h:panelGrid columns="2"> 
+                                        <h:outputLabel value="Titulo" />
+                                        <h:outputText value="#{accederOa.objetoUnit.titulo}"/>
+
+                                        <h:outputLabel value="Descripción" />
+                                        <h:outputText value="#{accederOa.objetoUnit.descripcion}" />
+
+                                        <h:outputLabel value="Autor"/>
+                                        <h:outputText value="#{accederOa.objetoUnit.autor}" />                  
+
+                                        <h:outputLabel value="Fecha de Creación &nbsp;" />
+                                        <h:outputText value="#{accederOa.objetoUnit.fecha}" />
+
+
+                                        <h:outputLabel value="Version" />
+                                        <h:outputText value="#{accederOa.objetoUnit.version}" />                                
+
+                                        <h:outputLabel value="Derechos" />
+                                        <h:outputText value="#{accederOa.objetoUnit.derechos}" />   
+
+                                        <h:outputLabel value="Formato"/>
+                                        <h:outputText value="#{accederOa.objetoUnit.formato}" />
+                                    </h:panelGrid>
+                                </div>
+                                <div class="page-header">
+                                    <h4>Educativo</h4>
+                                    <h:panelGrid columns="2" >
+                                        <h:outputLabel value="Tipo Recurso &nbsp;"/>
+                                        <h:outputText value="#{accederOa.objetoUnit.tipoRecurso}" />
+
+                                        <h:outputLabel value="Tópico"/>
+                                        <h:outputText value="#{accederOa.objetoUnit.nameTopico}" />
+
+                                    </h:panelGrid> 
+                                </div>
+                                <div class="page-header">
+                                    <h4>Estilo de Aprendizaje</h4>
+                                    <h:panelGrid columns="2"> 
+                                        <h:outputLabel value="Contenido"/>
+                                        <h:outputText value="#{accederOa.objetoUnit.estilo1}" />
+
+                                        <h:outputLabel value="Presentación"/>
+                                        <h:outputText value="#{accederOa.objetoUnit.estilo2}" />
+
+                                        <h:outputLabel value="Participación &nbsp;"/>
+                                        <h:outputText value="#{accederOa.objetoUnit.estilo2}" />
+
+                                        <h:outputLabel value="Secuencial"/>
+                                        <h:outputText value="#{accederOa.objetoUnit.estilo4}" />
+
+                                    </h:panelGrid> 
+                                </div>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
+                    <!--Fin Modal-->
+                </div>
+            </div>
+        </div>
+
+
+    </h:body>
+</html>
+
+

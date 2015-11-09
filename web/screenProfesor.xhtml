@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="/AppTituloProyecto/resources/js/bootstrap.js" type="text/javascript"></script>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    </h:head>
+
+    <h:body>
+        <div class="container-fluid">
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+          
+            
+
+            <div class="row" style="margin:10px;">
+         
+
+                
+                    <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Distribución de Estilos de Aprendizaje" class="list-group-item" outcome="./Profesor/VerDistribucion.xhtml" />
+                        <h:link value="Agrupar por Estilos de Aprendizaje" class="list-group-item" outcome="./Profesor/AgruparPorEA.xhtml" />
+                        <h:link value="Avance de un Estudiante" class="list-group-item" outcome="./Profesor/RealizarSeguimiento.xhtml" />
+                        <h:link value="Avance del curso" class="list-group-item" outcome="./Profesor/AvanceCurso.xhtml" />
+                        <h:link value="Gestionar Recursos de Aprendizaje" class="list-group-item" outcome="./Profesor/gestionarRecursos.xhtml" />
+                        <h:link value="Gestionar Estudiantes" class="list-group-item" outcome="./Profesor/gestionarEstudiantes.xhtml" />
+                        <h:link value="Gestionar Evaluaciones" class="list-group-item" outcome="./Profesor/setEvaluacion.xhtml?idTopico=0" />
+                        <h:link value="Mi Perfil" class="list-group-item" outcome="./Profesor/perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link> 
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-danger" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div>
+                
+                <div class="col-md-9">
+
+                    <div class="page-header">
+                        <h1>Panel de Control de profesor Para Fundamentos de Programación<small><br/>Ver los Estilos de Aprendiza de los alumnos, Gestione los recursos, estudiantes y evaluaciones. </small></h1>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </h:body>
+</html>
+
+
+

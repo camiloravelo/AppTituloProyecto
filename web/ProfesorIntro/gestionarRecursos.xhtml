@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTitulo2/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTitulo2/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+
+
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTitulo2/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTitulo2/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 10px;">
+          <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Distribución de Estilos de Aprendizaje" class="list-group-item" outcome="./VerDistribucion.xhtml" />
+                        <h:link value="Agrupar por Estilos de Aprendizaje" class="list-group-item" outcome="./AgruparPorEA.xhtml" />
+                        <h:link value="Avance de un Estudiante" class="list-group-item" outcome="./RealizarSeguimiento.xhtml" />
+                        <h:link value="Avance del curso" class="list-group-item" outcome="./AvanceCurso.xhtml" />
+                        <h:link value="Gestionar Recursos de Aprendizaje" class="list-group-item active" outcome="./gestionarRecursos.xhtml" />
+                        <h:link value="Gestionar Estudiantes" class="list-group-item" outcome="./gestionarEstudiantes.xhtml" />
+                        <h:link value="Gestionar Evaluaciones" class="list-group-item" outcome="./setEvaluacion.xhtml?idTopico=0" />
+                        <h:link value="Mi Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link> 
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-danger" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div> 
+
+
+                <div class="col-md-9">
+                    <h2>Gestión de Recursos</h2>
+
+                    <p:tooltip />
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                    <h:form>
+                        <h:commandButton id="submit" class="btn btn-default" value="Añadir Recurso" action="./gestionarRecursosAdd.xhtml" />
+                    </h:form>
+
+                    <h:form id="form"> 
+                        <p:dataTable var="objetos" value="#{tablaLearningObject.objetos}" id="tabla" emptyMessage="No existen Recursos">  
+
+                            <p:column headerText="Tópico" style="width:250px" filterBy="#{objetos.nameTopico}" filterMatchMode="contains">                                  
+                                <h:outputText value="#{objetos.nameTopico}" />  
+                            </p:column>
+
+                            <p:column id="titulo" headerText="Detalles" > 
+
+                                <p style="font-size:1.1em;"  >    <h:outputText value="#{objetos.titulo}" /></p>
+                                
+                                <p style="font-size:0.8em;"> 
+                                            <strong>Título: </strong> <h:outputText value="#{objetos.titulo}" />  <br/>
+                                            <strong>Autor: </strong> <h:outputText value="#{objetos.autor}" />  <br/>
+                                            <strong>Tipo: </strong> <h:outputText value="#{objetos.tipoRecurso}" />  <br/></p>
+                                            
+                            </p:column>
+
+                            <p:column headerText="Más" width="135" >
+                                
+
+                                        <p:confirmDialog global="true" showEffect="fade" >
+                                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                        </p:confirmDialog>
+
+                                        <p:menuButton value="Opciones" >
+                                            <p:menuitem>
+                                                <p:commandLink styleClass="ui-menuitem-link" action="#{tablaLearningObject.eliminarObjeto(objetos.id)}" ajax="false">
+                                                    <h:outputText styleClass="ui-menuitem-icon ui-icon ui-icon-close" />
+                                                    <h:outputText styleClass="ui-menuitem-text" value="Eliminar" />
+                                                    <p:confirm header="Confirmation" message="Está seguro" icon="ui-icon-alert" />
+                                                </p:commandLink>
+                                            </p:menuitem>
+                                            <p:menuitem value="Descargar" url="/resources/objetos/#{objetos.ruta}" icon="ui-icon-disk" target="_blank" />
+                                            <p:menuitem value="Ver"  action="#{tablaLearningObject.verObjeto(objetos.id)}" icon="ui-icon-zoomin"/>
+                                        </p:menuButton>
+                                    
+                            </p:column> 
+                        </p:dataTable>
+                    </h:form> 
+
+                </div>
+            </div>
+        </div>    
+
+    </h:body>
+</html>
+
+
+

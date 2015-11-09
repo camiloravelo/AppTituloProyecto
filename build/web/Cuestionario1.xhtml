@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/docs.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="page-header">
+                        <h2>Cuentionario Felder y Silverman <small><br/>El cuestionario de Felder y Silverman permite determinar tu Estilo de 
+                                Aprendizaje y así ofrecerte recursos adaptados para ti. </small></h2>
+
+                    </div>
+                    <p:tooltip />
+
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                    <h:form >
+
+                        <ol>
+                          
+                            <li> 
+                                Entiendo mejor algo
+                                <h:selectOneRadio value="#{cuestionario.respuestas[0]}" >
+                                     
+                                    <f:selectItem itemValue="-1"  itemLabel="a) si lo practico. " /> 
+                                   
+                      
+                                   <br/> <f:selectItem itemValue="1" itemLabel=" b) si pienso en ello. " /> 
+                                </h:selectOneRadio>
+
+
+                            </li> 
+  
+                        
+                            <li> 
+                                Me considero
+                                <h:selectOneRadio value="#{cuestionario.respuestas[1]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) realista." />
+                                    <f:selectItem itemValue="1" itemLabel="b) innovador." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando pienso acerca de lo que hice ayer, es más probable que lo haga sobre la base de
+                                <h:selectOneRadio value="#{cuestionario.respuestas[2]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) una imagen." />
+                                    <f:selectItem itemValue="1" itemLabel="b) palabras." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Tengo tendencia a 
+                                <h:selectOneRadio value="#{cuestionario.respuestas[3]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) entender los detalles de un tema pero no ver claramente su estructura completa." />
+                                    <f:selectItem itemValue="1" itemLabel="b) entender la estructura completa pero no ver claramente los detalles." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Cuando estoy aprendiendo algo nuevo, me ayuda
+                                <h:selectOneRadio value="#{cuestionario.respuestas[4]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) hablar de ello." />
+                                    <f:selectItem itemValue="1" itemLabel="b) pensar en ello." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Si yo fuera profesor, yo preferiría dar un curso
+                                <h:selectOneRadio value="#{cuestionario.respuestas[5]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) que trate sobre hechos y situaciones reales de la vida." />
+                                    <f:selectItem itemValue="1" itemLabel="b) que trate con ideas y teorías." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Prefiero obtener información nueva de
+                                <h:selectOneRadio value="#{cuestionario.respuestas[6]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) imágenes, diagramas, gráficas o mapas." />
+                                    <f:selectItem itemValue="1" itemLabel="b) instrucciones escritas o información verbal." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Una vez que entiendo 
+                                <h:selectOneRadio value="#{cuestionario.respuestas[7]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) todas las partes, entiendo el total." />
+                                    <f:selectItem itemValue="1" itemLabel="b) el total de algo, entiendo como encajan sus partes." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+
+                                En un grupo de estudio que trabaja con un material difícil, es más probable que
+                                <h:selectOneRadio value="#{cuestionario.respuestas[8]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) participe y contribuya con ideas." />
+                                    <f:selectItem itemValue="1" itemLabel="b) no participe y  solo escuche." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+                                Es más fácil para mí
+                                <h:selectOneRadio value="#{cuestionario.respuestas[9]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) aprender hechos." />
+                                    <f:selectItem itemValue="1" itemLabel="b) aprender conceptos." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                            <li> 
+
+                                En un libro con muchas imágenes y gráficas es más probable que
+                                <h:selectOneRadio value="#{cuestionario.respuestas[10]}">
+                                    <f:selectItem itemValue="-1" itemLabel="a) revise cuidadosamente las imágenes y las gráficas." />
+                                    <f:selectItem itemValue="1" itemLabel="b) me concentre en el texto escrito." />
+                                </h:selectOneRadio>
+
+
+                            </li>
+                        </ol>
+                        <h:commandButton class="btn btn-primary" value="Siguiente" action="#{cuestionario.avansar1()}"/>
+
+
+
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+
+

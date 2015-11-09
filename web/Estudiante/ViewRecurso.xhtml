@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    <h:head>
+        <title>OA-Education PRUEBA 2</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/docs.min.css" rel="stylesheet" type="text/css"/>
+
+    </h:head>
+    <h:body>
+        
+        <div class="container-fluid">
+           <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 10px;">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Acceder a Recursos" class="list-group-item active" outcome="./accederRecursos.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+                        
+                         <h:link value="Repasar lo aprendido" class="list-group-item" outcome="./repasarAprendido.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+                        
+                        <h:link value="Rendir Evaluación" class="list-group-item" outcome="./homeEvaluacion.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+                        
+                        <h:link value="Estado de Avance" class="list-group-item" outcome="./estadoAvance.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Ver Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-default" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div> 
+
+                <div class="col-md-9">
+                    <div class="page-header">
+                        <h2>Detalle del Recurso<small><br/><h:outputText value="#{vistaRecurso.objeto.titulo}" /></small></h2>
+                    </div>
+
+                    <div class="bs-callout bs-callout-info">               
+                        <h4>General</h4>
+                        <h:panelGrid columns="2"> 
+                            <h:outputLabel value="Titulo" />
+                            <h:outputText value="#{vistaRecurso.objeto.titulo}"/>
+
+                            <h:outputLabel value="Descripción" />
+                            <h:outputText value="#{vistaRecurso.objeto.descripcion}" />
+
+                            <h:outputLabel value="Autor"/>
+                            <h:outputText value="#{vistaRecurso.objeto.autor}" />                  
+
+                            <h:outputLabel value="Fecha de Creación &nbsp;" />
+                            <h:outputText value="#{vistaRecurso.objeto.fecha}" />
+
+
+                            <h:outputLabel value="Version" />
+                            <h:outputText value="#{vistaRecurso.objeto.version}" />                                
+
+                            <h:outputLabel value="Derechos" />
+                            <h:outputText value="#{vistaRecurso.objeto.derechos}" />   
+
+                            <h:outputLabel value="Formato"/>
+                            <h:outputText value="#{vistaRecurso.objeto.formato}" />
+                        </h:panelGrid>
+                    </div>
+
+                    <div class="bs-callout bs-callout-info">
+                        <h4>Educativo</h4>
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel value="Tipo Recurso &nbsp;"/>
+                            <h:outputText value="#{vistaRecurso.objeto.tipoRecurso}" />
+
+                            <h:outputLabel value="Tópico"/>
+                            <h:outputText value="#{vistaRecurso.objeto.nameTopico}" />
+
+                        </h:panelGrid> 
+                    </div>
+                    <div class="bs-callout bs-callout-info">
+                        <h4>Estilo de Aprendizaje</h4>
+                        <h:panelGrid columns="2"> 
+                            <h:outputLabel value="Contenido"/>
+                            <h:outputText value="#{vistaRecurso.estilo.dimension1Value}" />
+
+                            <h:outputLabel value="Presentación"/>
+                            <h:outputText value="#{vistaRecurso.estilo.dimension2Value}" />
+
+                            <h:outputLabel value="Participación &nbsp;"/>
+                            <h:outputText value="#{vistaRecurso.estilo.dimension3Value}" />
+
+                            <h:outputLabel value="Secuencial"/>
+                            <h:outputText value="#{vistaRecurso.estilo.dimension4Value}" />
+
+                        </h:panelGrid> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </h:body>
+</html>
+
+
+

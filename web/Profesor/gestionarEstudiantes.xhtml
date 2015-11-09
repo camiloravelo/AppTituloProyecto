@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="/AppTituloProyecto/resources/js/bootstrap.js" type="text/javascript"></script>       
+    </h:head>
+
+    <h:body>
+        <div class="container-fluid">     
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 10px;">
+                 <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Distribución de Estilos de Aprendizaje" class="list-group-item" outcome="./VerDistribucion.xhtml" />
+                        <h:link value="Agrupar por Estilos de Aprendizaje" class="list-group-item" outcome="./AgruparPorEA.xhtml" />
+                        <h:link value="Avance de un Estudiante" class="list-group-item" outcome="./RealizarSeguimiento.xhtml" />
+                        <h:link value="Avance del curso" class="list-group-item" outcome="./AvanceCurso.xhtml" />
+                        <h:link value="Gestionar Recursos de Aprendizaje" class="list-group-item" outcome="./gestionarRecursos.xhtml" />
+                        <h:link value="Gestionar Estudiantes" class="list-group-item active" outcome="./gestionarEstudiantes.xhtml" />
+                        <h:link value="Gestionar Evaluaciones" class="list-group-item" outcome="./setEvaluacion.xhtml?idTopico=0" />
+                        <h:link value="Mi Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link> 
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-danger" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div>
+
+                <div class="col-md-9"><h2>Gestionar Estudiantes</h2>
+                    <p:tooltip />
+
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <h:form> 
+                        <p:dataTable var="estudiante" value="#{alumnado.alumnos}" id="growl" emptyMessage="No hay estudiantes en el curso">  
+
+                            <p:column headerText="Nombre">  
+                                <h:outputText value="#{estudiante.nombre}" />  
+                            </p:column>
+                            <p:column headerText="Correo"> 
+                                <h:outputText value="#{estudiante.correo}" />  
+                            </p:column>  
+
+                            <p:column headerText="Más" width="140">  
+
+                                <p:confirmDialog global="true" showEffect="fade" >
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+
+                                <p:menuButton value="Opciones" >
+                                    <p:menuitem>
+                                        <p:commandLink styleClass="ui-menuitem-link" action="#{alumnado.eliminar(estudiante.correo)}" ajax="false">
+                                            <h:outputText styleClass="ui-menuitem-icon ui-icon ui-icon-close" />
+                                            <h:outputText styleClass="ui-menuitem-text" value="Eliminar" />
+                                            <p:confirm header="Confirmación" message="Está seguro" icon="ui-icon-alert" />
+                                        </p:commandLink>
+                                    </p:menuitem>
+                                    <p:menuitem value="Ver"  action="#{alumnado.verPerfil(estudiante.correo)}" icon="ui-icon-zoomin"/>
+                                </p:menuButton>
+
+                            </p:column>
+                        </p:dataTable> 
+
+                        <br/>
+                        <p class="text-right">
+                        <p:commandButton value="Eliminar Todos" actionListener="#{alumnado.eliminarTodo()}" update="growl">
+                            <p:confirm header="Confirmación" message="Está seguro" icon="ui-icon-alert" />
+                        </p:commandButton>
+
+                        <p:confirmDialog global="true" showEffect="fade">
+                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                            </p>
+                    </h:form>    
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+
+

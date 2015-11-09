@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/docs.min.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .form-signin .form-signin-heading,
+            .form-signin .checkbox {
+                margin-bottom: 10px;
+            }
+            .form-signin input[type="text"],
+            .form-signin select,
+            .form-signin input[type="password"] {
+                font-size: 14px;
+                height: auto;
+                margin-bottom: 5px;
+                padding: 7px 9px;
+            }
+        </style>
+    </h:head>
+
+    <h:body >
+        <div class="container-fluid">
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 10px;">
+                  <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Distribución de Estilos de Aprendizaje" class="list-group-item" outcome="./VerDistribucion.xhtml" />
+                        <h:link value="Agrupar por Estilos de Aprendizaje" class="list-group-item" outcome="./AgruparPorEA.xhtml" />
+                        <h:link value="Avance de un Estudiante" class="list-group-item" outcome="./RealizarSeguimiento.xhtml" />
+                        <h:link value="Avance del curso" class="list-group-item" outcome="./AvanceCurso.xhtml" />
+                        <h:link value="Gestionar Recursos de Aprendizaje" class="list-group-item active" outcome="./gestionarRecursos.xhtml" />
+                        <h:link value="Gestionar Estudiantes" class="list-group-item" outcome="./gestionarEstudiantes.xhtml" />
+                        <h:link value="Gestionar Evaluaciones" class="list-group-item" outcome="./setEvaluacion.xhtml?idTopico=0" />
+                        <h:link value="Mi Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link> 
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-danger" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div>
+                <div class="col-md-9">
+                    <div class="page-header">
+                        <h2>Gestión de Recursos <small><br/>Añadir nuevo recurso, complete los datos que se solicitan. </small></h2>
+
+                    </div>
+
+                    <p:tooltip />
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                    <h:form enctype="multipart/form-data">
+                        <div class="bs-callout bs-callout-info">               
+                            <h4>General</h4>
+
+
+                            <h:panelGrid columns="2"> 
+                                <h:outputLabel value="Título" />
+                                <p:inputText value="#{objetoCrear.oa.titulo}" placeholder="Ej. Tutorial de Estructuras Selectivas" size="55"/>
+
+                                <h:outputLabel value="Descripción" />
+                                <p:inputText value="#{objetoCrear.oa.descripcion}" placeholder="Ej. Tutorial de corta duración" size="55"/>
+
+                                <h:outputLabel value="Autor"/>
+                                <p:inputText value="#{objetoCrear.oa.autor}" placeholder="Ej. Profesor Carlos Becerra C." size="55"/>                  
+
+                                <h:outputLabel value="Fecha de Creación &nbsp;" />
+                                <p:inputText value="#{objetoCrear.oa.fecha}" placeholder="Ej. Enero 2014" size="55"/>
+
+
+                                <h:outputLabel value="Versión" />
+                                <p:inputText value="#{objetoCrear.oa.version}" placeholder="Ej.1.1" size="55"/>                                
+
+                                <h:outputLabel value="Derechos" />
+                                <p:inputText value="#{objetoCrear.oa.derechos}" placeholder="Ej. Libre uso y distribución" size="55"/>   
+
+                                <h:outputLabel value="Formato"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.formato}">
+                                    <f:selectItem itemValue="pdf" itemLabel="Documento Pdf"/>
+                                    <f:selectItem itemValue="ppt" itemLabel="Presentacion ppt"/>
+                                    <f:selectItem itemValue="doc" itemLabel="Documento word"/>
+                                    <f:selectItem itemValue="codigo" itemLabel="Codigo Fuente"/>
+                                    <f:selectItem itemValue="video" itemLabel="Video"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+
+                        </div>
+
+                        <div class="bs-callout bs-callout-info">
+                            <h4>Educativo</h4>
+                            <h:panelGrid columns="2" >
+                                <h:outputLabel value="Tipo Recurso"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.tipoRecurso}">
+                                    <f:selectItem itemValue="diapositiva" itemLabel="Diapositiva de Catedra"/>
+                                    <f:selectItem itemValue="tutorial" itemLabel="Tutorial"/>
+                                    <f:selectItem itemValue="ejemplos" itemLabel="Ejemplos"/>
+                                    <f:selectItem itemValue="conceptos" itemLabel="Conceptos"/>
+
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Tópico"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.idTopico}">
+                                    <f:selectItem itemValue="1" itemLabel="Definición de Algoritmos"/>
+                                    <f:selectItem itemValue="2" itemLabel="Tipos de Datos"/>
+                                    <f:selectItem itemValue="3" itemLabel="Operadores"/>
+                                    <f:selectItem itemValue="4" itemLabel="Asignación"/>
+                                    <f:selectItem itemValue="5" itemLabel="Diagrama de Flujo"/>
+                                    <f:selectItem itemValue="6" itemLabel="Pseudo Código"/>
+                                    <f:selectItem itemValue="7" itemLabel="Estructura Selectiva Simple"/>
+                                    <f:selectItem itemValue="8" itemLabel="Estructura Selectiva Doble"/>
+                                    <f:selectItem itemValue="9" itemLabel="Estructura Selectiva Múltiple"/>
+                                    <f:selectItem itemValue="10" itemLabel="Estructuras de Repetición Mientras"/>
+                                    <f:selectItem itemValue="11" itemLabel="Estructuras de Repetición Repetir"/>
+                                    <f:selectItem itemValue="12" itemLabel="Introducción a Arreglos"/>
+                                    <f:selectItem itemValue="13" itemLabel="Arreglos Unidimensionales"/>
+                                    <f:selectItem itemValue="14" itemLabel="Arreglos Multidimensionales"/>
+                                    <f:selectItem itemValue="15" itemLabel="Algoritmos de Búsqueda"/>
+                                    <f:selectItem itemValue="16" itemLabel="Algoritmos de Ordenamiento"/>
+                                    <f:selectItem itemValue="17" itemLabel="Introducción a Registros"/>
+                                    <f:selectItem itemValue="18" itemLabel="Registros Anidados"/>
+                                    <f:selectItem itemValue="19" itemLabel="Arreglos de Registros"/>
+                                    <f:selectItem itemValue="20" itemLabel="Definición de Archivos"/>
+                                    <f:selectItem itemValue="21" itemLabel="Operaciones Básicas con Archivos"/>
+                                    <f:selectItem itemValue="22" itemLabel="Operaciones con Archivos Binarios"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="Archivo" /> <p:fileUpload  value="#{objetoCrear.file}" mode="simple"  />
+                            </h:panelGrid> 
+                        </div>
+                        <div class="bs-callout bs-callout-info">
+                            <h4>Estilo de Aprendizaje</h4>
+                            <h:panelGrid columns="2"> 
+
+                                <h:outputLabel value="Contenido"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.estilo1}">
+                                    <f:selectItem itemValue="1" itemLabel="Sensitivo"/>
+                                    <f:selectItem itemValue="2" itemLabel="Intuitivo"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Presentación"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.estilo2}"> 
+                                    <f:selectItem itemValue="1" itemLabel="Visual"/>
+                                    <f:selectItem itemValue="2" itemLabel="Verbal"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Participación"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.estilo3}">
+                                    <f:selectItem itemValue="1" itemLabel="Activo"/>
+                                    <f:selectItem itemValue="2" itemLabel="Reflexivo"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Perspectiva"/>
+                                <h:selectOneMenu value="#{objetoCrear.oa.estilo4}">
+                                    <f:selectItem itemValue="1" itemLabel="Secuencial"/>
+                                    <f:selectItem itemValue="2" itemLabel="Global"/>
+                                </h:selectOneMenu>
+
+                            </h:panelGrid> 
+                        </div>
+                        <p:commandButton ajax="false" value="Guardar" action="#{objetoCrear.procesar()}"  />
+                    </h:form>
+                </div>
+            </div>
+        </div>  
+    </h:body>
+</html>
+
+
+

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"> 
+
+
+
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+
+
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 10px;">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Distribución de Estilos de Aprendizaje" class="list-group-item active" outcome="./VerDistribucion.xhtml" />
+                        <h:link value="Agrupar por Estilos de Aprendizaje" class="list-group-item" outcome="./AgruparPorEA.xhtml" />
+                        <h:link value="Avance de un Estudiante" class="list-group-item" outcome="./RealizarSeguimiento.xhtml" />
+                        <h:link value="Avance del curso" class="list-group-item" outcome="./AvanceCurso.xhtml" />
+                        <h:link value="Gestionar Recursos de Aprendizaje" class="list-group-item" outcome="./gestionarRecursos.xhtml" />
+                        <h:link value="Gestionar Estudiantes" class="list-group-item" outcome="./gestionarEstudiantes.xhtml" />
+                        <h:link value="Gestionar Evaluaciones" class="list-group-item" outcome="./setEvaluacion.xhtml?idTopico=0" />
+                        <h:link value="Mi Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link> 
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-danger" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div>
+
+
+                <div class="page-header"> 
+                    <h2>Distribución Estilos de Aprendizaje Curso <small><br/> Distribución del curso en las 4 dimensiones</small></h2>
+
+                </div>
+
+
+
+
+                <h:form>
+                    <div class="col-md-9">
+
+                        <p:growl id="growl" showDetail="true" />
+
+
+                        <div class="pull-left">
+                            <p:chart type="pie" model="#{chartViewIntro.pieModel1}" style="width:400px;height:300px" widgetVar="chart">
+
+                            </p:chart>
+
+                        </div>
+
+                        <div class="pull-right">     
+                            <p:chart type="pie" model="#{chartViewIntro.pieModel2}" style="width:400px;height:300px"  widgetVar="chart2"  />
+
+                        </div> 
+
+
+                        <div class="pull-left">
+
+
+
+                            <p:chart type="pie" model="#{chartViewIntro.pieModel3}" style="width:400px;height:300px" widgetVar="chart3" />
+
+                        </div>
+                        <div class="pull-right">     
+                            <p:chart type="pie" model="#{chartViewIntro.pieModel4}" style="width:400px;height:300px"  widgetVar="chart4"/>
+
+                        </div> 
+
+                        <!-- <p:commandButton type="button" value="Exportar" icon="ui-icon-extlink" onclick="exportChart()"/> -->
+
+                        <p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="Chart as an Image" resizable="false">
+                            <p:outputPanel id="output" layout="block" style="width:500px;height:300px"/>
+                        </p:dialog>
+
+
+
+
+
+
+                        <script type="text/javascript">
+                            function exportChart() {
+                                //export image
+                                img = chart.exportAsImage();
+                                document.getElementById('hform:b64').value = img.src;
+                            }
+                        </script>
+
+
+
+                    </div> 
+                </h:form>
+            </div>     
+        </div>
+
+
+    </h:body>
+</html>
+

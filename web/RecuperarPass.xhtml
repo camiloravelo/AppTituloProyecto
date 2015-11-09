@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <style type="text/css">
+
+
+            .form-signin {
+                max-width: 369px;
+                padding: 19px 29px 29px;
+                margin: 0 auto 20px;
+                background-color: #fff;
+                border: 1px solid #e5e5e5;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            }     
+            .form-signin .form-signin-heading,
+            .form-signin .checkbox {
+                margin-bottom: 10px;
+            }
+            .form-signin input[type="text"],
+            .form-signin input[type="password"] {
+                font-size: 16px;
+                height: auto;
+                margin-bottom: 15px;
+                padding: 7px 9px;
+            }           
+            .caja-center {
+                max-width: 369px;
+                margin: 0 auto 20px;
+                background-color: #fff;
+                //border: 1px solid #e5e5e5;
+            }      
+        </style>
+
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="/AppTituloProyecto/resources/js/bootstrap.js" type="text/javascript"></script>
+        <link href="/AppTituloProyecto/resources/css/docs.min.css" rel="stylesheet" type="text/css"/>
+        <script>
+           $(document).ready(function(){
+           var url = "";
+           $.ajax({
+                type: 'get',
+                url: url,
+                cache: false,   
+                dataType: 'json',
+                data: {correoAlumno: correoAlunmo}, // 
+                success: function(datos){
+                    var alumno = datos; // alumno con sus datos
+    }
+            });
+	});
+        </script>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="page-header">
+                        <h2>Recuperar Contraseña<small><br/>
+                            </small></h2> 
+                        <p>Ingrese su correo asociado y le enviaremos su contraseña </p>
+                        <p:button  value="Volver" icon="ui-icon-star" href="index.xhtml" >
+ 
+</p:button>
+                    </div>
+                    <p:tooltip />
+
+                    <p:messages id="messages" showDetail="true" escape="false" autoUpdate="true" closable="true" />
+
+                    <div class="caja-center" >
+                        <div class="alert-info">
+                        </div>                 
+
+                        <h:link class="btn btn-primary btn-lg" style="width:100%;" value="Acceder" outcome="./index.xhtml" rendered="#{crearCuenta.verLink}"/>
+
+                    </div>
+                    <h:form class="form-signin">
+                         
+                        <h:panelGrid columns="2">
+                           
+
+                            <h:outputLabel value="Correo" />
+                            <br/>
+                            <p:inputText value="#{crearCuenta.correo}" />
+
+
+                       
+                        </h:panelGrid> 
+                        
+                       
+                        <h:commandButton class="btn btn-primary" value="Enviar" action="#{crearCuenta.procesar()}" rendered="#{!crearCuenta.verLink}" />
+                    </h:form>
+
+
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+

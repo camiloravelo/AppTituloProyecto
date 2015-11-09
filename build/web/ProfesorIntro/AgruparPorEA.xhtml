@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/> 
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/> 
+
+
+        <script src="/AppTituloProyecto/resources/js/bootstrap.js" type="text/javascript"></script> 
+
+    </h:head>
+    <h:body>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <div class="container-fluid">
+
+
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 10px;">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Distribución de Estilos de Aprendizaje" class="list-group-item" outcome="./VerDistribucion.xhtml" />
+                        <h:link value="Agrupar por Estilos de Aprendizaje" class="list-group-item active" outcome="./AgruparPorEA.xhtml" />
+                        <h:link value="Avance de un Estudiante" class="list-group-item" outcome="./RealizarSeguimiento.xhtml" />
+                        <h:link value="Avance del curso" class="list-group-item" outcome="./AvanceCurso.xhtml" />
+                        <h:link value="Gestionar Recursos de Aprendizaje" class="list-group-item" outcome="./gestionarRecursos.xhtml" />
+                        <h:link value="Gestionar Estudiantes" class="list-group-item" outcome="./gestionarEstudiantes.xhtml" />
+                        <h:link value="Gestionar Evaluaciones" class="list-group-item" outcome="./setEvaluacion.xhtml?idTopico=0" />
+                        <h:link value="Mi Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link> 
+                    </div>
+                    <h:form>
+                        <h:commandButton id="salir" class="btn btn-danger" value="Salir" action="#{login.logout()}" />
+                    </h:form>
+                </div> 
+
+
+                <div class="col-md-9"> 
+                    <div class="page-header"> 
+
+                        <h2> Agrupar por Estilos de Aprendizaje <small><br/> Permite ordenar a los alumnos dependieno del Estilo de Aprendizaje </small></h2> 
+
+                    </div>
+
+
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                        <!--
+                         <p:dataTable value="" >
+                             <p:column headerText="" width="120"></p:column>
+                              <p:column headerText="PRIMERA" width="180" ></p:column>
+                             <p:column headerText="hola"></p:column>
+                             <p:column headerText="hola"></p:column>
+                             <p:column headerText="hola"></p:column>
+                             <p:column headerText="hola"></p:column>
+                             <f:facet name="header">
+                                 PERCEPCION
+                             </f:facet> 
+                             <f:facet name="header">
+                                 PERCEPCION
+                             </f:facet>  
+                         </p:dataTable>
+                        -->
+                    </div>  
+
+                    <h:form>
+
+                        <p:menuButton value="Ver Por Estilo" >
+                            <p:menuitem value="Sensitivo" style="background-color: #ededf8" outcome="./AgruparPorEASensi.xhtml" />
+                            <p:menuitem value="Intuitivo" style="background-color: #ededf8" outcome="./AgruparPorEAIntu.xhtml"  />
+                            <p:menuitem value="Visual" style="background-color: #dbedff" outcome="./AgruparPorEAVisual.xhtml"  />
+                            <p:menuitem value="Verbal" style="background-color: #dbedff" outcome="./AgruparPorEAVerbal.xhtml"  />
+                            <p:menuitem value="Activo" style="background-color: #cdf1e9" outcome="./AgruparPorEAActivo.xhtml"  />
+                            <p:menuitem value="Reflexivo" style="background-color: #cdf1e9" outcome="./AgruparPorEARefle.xhtml"  />
+                            <p:menuitem value="Secuencial" style="background-color: #fffbdb" outcome="./AgruparPorEASecuen.xhtml"  />
+                            <p:menuitem value="Global" style="background-color: #fffbdb" outcome="./AgruparPorEAGlobal.xhtml"  />
+
+
+
+                        </p:menuButton>
+
+                    
+                    </h:form>
+                    <div class="col-md-12 no-padding">
+
+                       
+
+
+
+                        <h:form> 
+                            <br>    </br>
+                            <p:dataTable id="tbl" var="estudianteIntro" value="#{alumnadoIntro.alumnos}" emptyMessage="No se encuentra estudiantes"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         paginator="true" rows="10" style="margin-bottom:20px" filteredValue="#{alumnadoIntro.filtroAlumnos}"  >   
+
+
+
+
+
+
+                                <p:column filterBy="#{estudianteIntro.nombre}" headerText="Nombre" width="120"  filterMatchMode="contains" styleClass="textoHeaderTable" sortBy="#{estudianteIntro.nombre}">  
+
+                                    <h:outputText value="#{estudianteIntro.nombre}"  />  
+
+                                </p:column>
+                                <p:column   sortBy="#{estudianteIntro.di1}" headerText="Dimension 1" width="90" style="background-color: #ededf8; text-align: center ">
+
+                                    <h:outputText value="Intuitivo"   rendered="#{estudianteIntro.di1 == 1}"></h:outputText>      
+                                    <h:outputText value="Sensitivo"   rendered="#{estudianteIntro.di1 == 2}"></h:outputText>      
+
+                                </p:column>
+
+                                <p:column sortBy="#{estudianteintro.di2}" headerText="Dimension 2" width="90" style="text-align: center; background-color: #dbedff"> 
+                                    <h:outputText value="Visual"   rendered="#{estudianteIntro.di2 == 1}"></h:outputText>      
+                                    <h:outputText value="Verbal"   rendered="#{estudianteIntro.di2 == 2}"></h:outputText>    
+
+                                </p:column>
+                                <p:column sortBy="#{estudianteIntro.di3}" headerText="Dimension 3 " width="90" style="text-align: center; background-color: #cdf1e9"> 
+                                    <h:outputText value="Activo"   rendered="#{estudianteIntro.di3 == 1}"></h:outputText>      
+                                    <h:outputText value="Reflexivo"   rendered="#{estudianteIntro.di3 == 2}"></h:outputText>    
+
+                                </p:column>
+                                <p:column sortBy="#{estudianteintro.di4}" headerText="Dimension 4" width="90" style="text-align: center; background-color: #fffbdb"> 
+                                    <h:outputText value="Secuencial"   rendered="#{estudianteIntro.di4 == 1}"></h:outputText>      
+                                    <h:outputText value="Global"   rendered="#{estudianteIntro.di4 == 2}"></h:outputText>    
+                                </p:column>
+
+
+
+                                <p:column headerText="Perfil" width="90" styleClass="textoHeaderTable">  
+
+                                    <p:commandButton  value="Ver" icon="ui-icon-zoomin" action="#{alumnadoIntro.verPerfil(estudiante.correo)}"/>
+                                </p:column>
+
+                            </p:dataTable>   
+
+                        </h:form> 
+                    </div> 
+                </div> 
+            </div> 
+
+        </div>
+
+
+        <!-- 
+
+
+       <div class="col-md-6 no-padding">
+       </div> 
+
+       <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+           <p:dataTable value="" >
+               <f:facet name="header">
+                   INPUT
+               </f:facet>    
+           </p:dataTable>
+
+           <div class="col-md-6 no-padding">
+               <h:form>  
+
+                  
+
+                                id="growl" emptyMessage="No hay estudiantes en el curso"   >  
+
+
+        -->
+
+
+    </h:body>
+</html>
+

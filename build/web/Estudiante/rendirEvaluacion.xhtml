@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    <h:head>
+        <title>OA-Education</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/AppTituloProyecto/resources/css/docs.min.css" rel="stylesheet" type="text/css"/>
+        <script src="/AppTituloProyecto/resources/js/bootstrap.js" type="text/javascript"></script>    
+    </h:head>
+
+    <h:body>
+        <div class="container-fluid">
+
+
+            <div class="row" style="background-color: #F5F5F5;padding: 20px;">
+                <div class="col-md-3">
+                    <img src="/AppTituloProyecto/resources/imagen/logo_uv.png" alt=""/>
+                </div>
+
+                <div class="span6 pull-right">
+                    <div class="hidden-xs"><img src="/AppTituloProyecto/resources/imagen/header_decom.png" alt=""/></div>
+                </div>
+            </div>
+
+            <!--Inicio Boton salir -->
+
+            <h:form>
+                <div class="menuHeader">
+                    <h:button class="btn btn-default" value="Cuenta" outcome="./perfil.xhtml"/>
+                    <h:commandButton class="btn btn-default" value="Salir" action="#{login.logout()}" />
+                </div>
+            </h:form>
+
+            <!--Fin Boton salir -->
+
+            <div class="row" style="margin: 10px;">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <h:link value="Acceder a Recursos" class="list-group-item" outcome="./accederRecursos.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Repasar lo aprendido" class="list-group-item" outcome="./repasarAprendido.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Rendir Evaluación" class="list-group-item active" outcome="./homeEvaluacion.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Estado de Avance" class="list-group-item" outcome="./estadoAvance.xhtml">
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+
+                        <h:link value="Ver Perfil" class="list-group-item" outcome="./perfil.xhtml" >
+                            <f:param name="username" value="#{login.nombre}" />  
+                        </h:link>
+                    </div>
+                </div> 
+
+
+                <div class="col-md-9">  
+                    <div class="page-header">
+                        <h2>Rendir Evaluación de <h:outputText value="#{evaluacion2.topico.nombre}"/><small><br/>
+                                Responda las preguntas.
+                            </small></h2>
+                    </div>
+
+                    <h:form> 
+                        <p:dataTable var="empleado" value="#{evaluacion2.hist}" emptyMessage="El profesor aún no ha creado la evaluación">  
+                            <p:column headerText="Preguntas Alternativas" > 
+                                <h:outputText value="#{empleado.enunciado}" escape="false" /> 
+
+                                <h:selectOneRadio value="#{empleado.respuesta}" >      
+
+                                    <f:selectItem itemValue="1" itemLabel="a) #{empleado.alt1}" itemEscaped="false" />
+                                    <f:selectItem itemValue="2" itemLabel="b) #{empleado.alt2}" itemEscaped="false" />
+                                    <f:selectItem itemValue="3" itemLabel="c) #{empleado.alt3}" itemEscaped="false" /> 
+                                    <f:selectItem itemValue="4" itemLabel="d) #{empleado.alt4}" itemEscaped="false" />
+                                </h:selectOneRadio>
+
+                            </p:column> 
+                        </p:dataTable> 
+                        <p:dataTable var="empleadoVF" value="#{evaluacion2.histVF}" emptyMessage="El profesor aún no ha creado la evaluación">  
+                            <p:column headerText="Preguntas V o F" > 
+                                <h:outputText value="#{empleadoVF.enunciado}" escape="false" /> 
+
+                                <h:selectOneRadio value="#{empleadoVF.respuesta}" >      
+
+                                    <f:selectItem itemValue="1" itemLabel="a) #{empleadoVF.alt1}" itemEscaped="false" />
+                                    <f:selectItem itemValue="2" itemLabel="b) #{empleadoVF.alt2}" itemEscaped="false" />
+
+                                </h:selectOneRadio>
+
+                            </p:column> 
+                        </p:dataTable>
+                        <br/>
+                        <h:commandButton class="btn btn-primary" value="Responder" action="#{evaluacion2.procesar()}"  rendered="#{evaluacion2.boton}"/>
+                    </h:form> 
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+
+
